@@ -8,6 +8,10 @@ const moviesRoutes = require('./routes/moviesRoutes');
 const genresRoutes = require('./routes/genresRoutes');
 const app = express();
 
+// chequear conexión DB
+const dbConnectionTest = require('./utils/dbConnectionTest');
+dbConnectionTest();
+
 // view engine setup
 app.set('views', path.resolve(__dirname, './views'));
 app.set('view engine', 'ejs');
