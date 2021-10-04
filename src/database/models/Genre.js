@@ -1,6 +1,6 @@
 module.exports = (sequelize,DataTypes) => {
 
-    const alias = 'Genero'
+    const alias = 'Genero';
     
     const cols = {
         id: {
@@ -26,6 +26,7 @@ module.exports = (sequelize,DataTypes) => {
     }
 
     const config = {
+        tableName: 'genres',
         underscored: true
     }
 
