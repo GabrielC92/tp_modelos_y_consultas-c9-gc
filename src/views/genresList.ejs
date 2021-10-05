@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Generos</title>
-    <link rel='stylesheet' href='/css/style.css' />
-
-</head>
-
+<%- include('partials/head', {title: 'Listado de Generos'}) %>
 <body>
     <figure>
         <img src="/img/logo-DH.png" alt="Logo Digital House">
@@ -20,7 +12,6 @@
             <a href="/genres/detail/<%= genres[i].id %>"><%= genres[i].name %></a>
         </li>
         <% } %>
-
     </ul>
 </body>
 
