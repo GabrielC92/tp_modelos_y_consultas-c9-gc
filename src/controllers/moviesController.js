@@ -51,23 +51,35 @@ module.exports = {
                 })
             })
             .catch(error => console.log(error));
-    }, //Aqui debemos modificar y completar lo necesario para trabajar con el CRUD
-    add: function (req, res) {
-        // TODO   
+    }, //Aqui inicia el CRUD
+    add: (req, res) => res.render('moviesAdd'),
+    create: (req, res) => {
+        const {title,rating,awards,release_date,length} = req.body;
+        db.Pelicula.create({
+            title: title.trim(),
+            rating,
+            awards,
+            release_date,
+            length
+        })
+            .then(movie => {
+                console.log(movie);
+                res.redirect('/movies/detail/' + movie.id)
+            })
+            .catch(error => console.log(error));
     },
-    create: function (req, res) {
-        // TODO
+    edit: (req, res) => {
+        db.Pelicula.findByPk(req.params.id)
+            .then(Movie => res.render('moviesEdit',{
+                Movie
+            }))
+            .catch(error => console.log(error));
     },
-    edit: function(req, res) {
-        // TODO
+    update: (req, res) => {
+        return res.send(req.body)
     },
-    update: function (req,res) {
-        // TODO
-    },
-    delete: function (req, res) {
-        // TODO
-    },
-    destroy: function (req, res) {
+    remove: (req, res) => res.render('moviesDelete'),
+    destroy: (req, res) => {
         // TODO
     }
 }

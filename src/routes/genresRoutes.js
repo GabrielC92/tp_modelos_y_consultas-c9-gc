@@ -3,7 +3,7 @@ const router = express.Router();
 const {list,detail} = require('../controllers/genresController');
 
 router
-    .get('/genres', list)
-    .get('/genres/detail/:id', detail);
+    .get('/', list)
+    .get('/detail/:id', detail);
 
 module.exports = router;
