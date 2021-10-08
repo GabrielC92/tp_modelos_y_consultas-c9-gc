@@ -64,7 +64,7 @@ module.exports = {
         })
             .then(movie => {
                 console.log(movie);
-                res.redirect('/movies/detail/' + movie.id)
+                res.redirect('/movies')
             })
             .catch(error => console.log(error));
     },
@@ -76,10 +76,31 @@ module.exports = {
             .catch(error => console.log(error));
     },
     update: (req, res) => {
-        return res.send(req.body)
+        db.Pelicula.update({
+            ...req.body
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        })
+            .then(() => res.redirect('/movies'))
+            .catch(error => console.log(error));
     },
-    remove: (req, res) => res.render('moviesDelete'),
+    remove: (req, res) => {
+        db.Pelicula.findByPk(req.params.id)
+            .then(Movie => res.render('moviesDelete',{
+                Movie
+            }))
+            .catch(error => console.log(error));
+    },
     destroy: (req, res) => {
-        // TODO
+        db.Pelicula.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+            .then(() => res.redirect('/movies'))
+            .catch(error => console.log(error));
     }
 }
