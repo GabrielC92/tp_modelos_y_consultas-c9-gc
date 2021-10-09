@@ -51,7 +51,23 @@ module.exports = {
                 })
             })
             .catch(error => console.log(error));
-    }, //Aqui inicia el CRUD
+    },
+    search : (req,res) => {
+        db.Pelicula.findAll({
+            where: {
+                title: {
+                    [Op.like]: `%${req.query.keywords}%`
+                }
+            }
+        })
+            .then(movies => res.render('moviesResult',{
+                title: 'Resultado de la búsqueda',
+                movies,
+                busqueda: req.query.keywords.trim()
+            }))
+            .catch(error => console.log(error));
+    },
+    //Aqui inicia el CRUD
     add: (req, res) => res.render('moviesAdd'),
     create: (req, res) => {
         const {title,rating,awards,release_date,length} = req.body;

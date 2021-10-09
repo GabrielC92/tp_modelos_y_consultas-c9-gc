@@ -1,0 +1,33 @@
+header{}
+header .titulo{}
+header .titulo .link-home{}
+header .burger-menu{}
+header .burger-menu .check{}
+header .burger-menu .burger{}
+header .burger-menu ul{}
+header .burger-menu ul li{}
+header .burger-menu ul li .link-menu{}
+
+@media (min-width: 426px) {
+    header{}
+    header .titulo{}
+    header .titulo .link-home{}
+    header .burger-menu{}
+    header .burger-menu .check{}
+    header .burger-menu .burger{}
+    header .burger-menu ul{}
+    header .burger-menu ul li{}
+    header .burger-menu ul li .link-menu{}    
+}
+
+@media (min-width: 769px) {
+    header{}
+    header .titulo{}
+    header .titulo .link-home{}
+    header .burger-menu{}
+    header .burger-menu .check{}
+    header .burger-menu .burger{}
+    header .burger-menu ul{}
+    header .burger-menu ul li{}
+    header .burger-menu ul li .link-menu{}    
+}

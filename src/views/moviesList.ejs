@@ -2,9 +2,11 @@
 <html lang="en">
 <%- include('partials/head', {title: 'Listado de Películas'}) %>
 <body>
+    <%- include('partials/header') %>
     <figure>
         <img src="/img/logo-DH.png" alt="Logo Digital House">
     </figure>
+    <%- include('partials/search') %>
     <h1>LISTADO DE PELÍCULAS</h1>
     <ul>
         <% for( let i = 0; i < movies.length; i++ ) { %>

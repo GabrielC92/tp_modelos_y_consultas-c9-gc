@@ -2,9 +2,11 @@
 <html lang="es">
 <%- include('partials/head', {title: 'Películas ordenadas por fecha'}) %>
 <body>
+    <%- include('partials/header') %>
     <figure>
         <img src="/img/logo-DH.png" alt="Logo Digital House">
     </figure>
+    <%- include('partials/search') %>
     <h1>PELÍCULAS ORDENADAS POR FECHA</h1>
     <ul>
         <% for( let i = 0; i < movies.length; i++ ) { %>
