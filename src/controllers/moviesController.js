@@ -55,9 +55,11 @@ module.exports = {
     search : (req,res) => {
         db.Pelicula.findAll({
             where: {
-                title: {
-                    [Op.like]: `%${req.query.keywords}%`
-                }
+                [Op.or]: [{
+                    title: {
+                        [Op.substring]: req.query.keywords
+                    }
+                }]
             }
         })
             .then(movies => res.render('moviesResult',{
