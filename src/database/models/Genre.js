@@ -4,7 +4,7 @@ module.exports = (sequelize,DataTypes) => {
     
     const cols = {
         id: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER(10).UNSIGNED,
             primaryKey: true,
             allowNull: false,
             autoIncrement: true
@@ -14,7 +14,7 @@ module.exports = (sequelize,DataTypes) => {
             allowNull: false
         },
         ranking: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER(10).UNSIGNED,
             allowNull: false,
             unique: true
         },
@@ -27,15 +27,19 @@ module.exports = (sequelize,DataTypes) => {
 
     const config = {
         tableName: 'genres',
+        timestamps: true,
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
+        deletedAt: false,
         underscored: true
     }
 
     const Genre = sequelize.define(alias,cols,config);
 
     Genre.associate = models => {
-        Genre.hasMany(models.Movie, {
+        Genre.hasMany(models.Pelicula, {
             as: 'peliculas',
-            /* foreignKey: 'genre_id' */
+            foreignKey: 'genre_id'
         });
     }
 

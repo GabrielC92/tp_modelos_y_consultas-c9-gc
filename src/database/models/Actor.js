@@ -4,7 +4,7 @@ module.exports = (sequelize,DataTypes) => {
 
     const cols = {
         id: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER(10).UNSIGNED,
             primaryKey: true,
             allowNull: false,
             autoIncrement: true
@@ -22,19 +22,28 @@ module.exports = (sequelize,DataTypes) => {
             defaultValue: null
         },
         favorite_movie_id: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER(10).UNSIGNED,
             defaultValue: null
         }
     }
 
     const config = {
+        tableName: 'actors',
+        timestamps: true,
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
+        deletedAt: false,
         underscored: true
     }
 
     const Actor = sequelize.define(alias,cols,config);
 
     Actor.associate = models => {
-        Actor.belongsToMany(models.Movie, {
+        Actor.belongsTo(models.Pelicula, {
+            as: 'movie',
+            foreignKey: 'favorite_movie_id'
+        });
+        Actor.belongsToMany(models.Pelicula, {
             as: 'movies',
             through: 'actor_movie',
             foreignKey: 'actor_id',

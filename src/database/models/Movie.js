@@ -4,7 +4,7 @@ module.exports = (sequelize,DataTypes) => {
 
     const cols = {
         id: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER(10).UNSIGNED,
             primaryKey: true,
             allowNull: false,
             autoIncrement: true
@@ -18,7 +18,7 @@ module.exports = (sequelize,DataTypes) => {
             allowNull: false
         },
         awards: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER(10).UNSIGNED,
             allowNull: false,
             defaultValue: 0
         },
@@ -27,11 +27,11 @@ module.exports = (sequelize,DataTypes) => {
             allowNull: false
         },
         length: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER(10).UNSIGNED,
             defaultValue: null
         },
         genre_id: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER(10).UNSIGNED,
             defaultValue: null
         }
     }
@@ -39,20 +39,28 @@ module.exports = (sequelize,DataTypes) => {
     const config = {
         tableName: 'movies', // si la tabla no coincide con el plural del modelo, va esta configuración
         timestamps: true, // si no tiene timestamps va false
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
+        deletedAt: false,
         underscored: true // si está escrito con guión bajo (_), ej.: updated_at 
     }
 
     const Movie = sequelize.define(alias,cols,config);
 
     Movie.associate = models => {
-        Movie.belongsTo(models.Genre, {
-            as: 'genero'
+        Movie.belongsTo(models.Genero, {
+            as: 'genero',
+            foreignKey: 'genre_id'
+        });
+        Movie.hasMany(models.Actor, {
+            as: 'actors',
+            foreignKey: 'favorite_movie_id'
         });
         Movie.belongsToMany(models.Actor, {
             as: 'actores',
             through: 'actor_movie',
-            foreignKey: 'actor_id',
-            otherKey: 'movie_id'
+            foreignKey: 'movie_id',
+            otherKey: 'actor_id'
         });
     }
 

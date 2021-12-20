@@ -6,7 +6,7 @@
   padding: 0;
 }
 body {
-  padding: 50px;
+  /* padding: 50px; */
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -18,4 +18,10 @@ img{
 }
 figure{
   width: 20%;
+}
+main{
+  padding: 50px;
+}
+.link-button{
+  text-decoration: none;
 }
